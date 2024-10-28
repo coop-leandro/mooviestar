@@ -1,3 +1,98 @@
-body{
-    background-color: red;
+.navbar-brand{
+    position: relative;
+}
+
+.logo{
+    width: 50px;
+}
+
+.moviestar-title{
+    color: #fff;
+    position: absolute;
+    bottom: -2px;
+    font-size: 30px;
+    left: 55px;
+    font-weight: bold;
+}
+
+#main-navbar{
+    background-color: #121212;
+}
+
+#search-form{
+    margin: 0 auto;
+    background-color: #fff;
+    border-radius: 9px;
+    width: 50%;
+    margin-left: 180px;
+}
+
+#search-form .form-control{
+    border: none;
+    width: 90%;
+    box-shadow: none;
+}
+
+#navbar{
+    min-width: 30%;
+}
+
+.navbar-nav{
+    justify-content: flex-end;
+    width: 100%;
+}
+
+.navbar-nav .nav-item .nav-link{
+    color: #fff;
+    transition: .5s;
+}
+
+.bold{
+    font-weight: bold;
+}
+
+.main-container{
+    background-color: #000;
+    color: #fff;
+    min-height: 65vh;
+    padding: 50px;
+}
+
+/* footer */
+
+#footer{
+    background-color: #000;
+    color: #fff;
+    text-align: center;
+    margin: 0;
+    padding: 20px;
+}
+
+.socials-container ul,
+#footer-links-container ul{
+    list-style: none;
+    padding: 0;
+}
+
+.socials-container li,
+#footer-links-container li{
+    display: inline-block;    
+    margin: 0 20px;
+}
+
+.socials-container a,
+#footer-links-container a{
+    color: #fff;
+    text-decoration: none;
+}
+
+.socials-container li{
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    line-height: 3;
+}
+
+.socials-container li i{
+    font-size: 30px;
 }
