@@ -42,5 +42,14 @@
         }
 
     }else if($type === "login"){
+        $email = filter_input(INPUT_POST, "email");
+        $password = filter_input(INPUT_POST, "password");
 
+        if($userDao->authenticateUser($email, $password)){
+            $message->setMessage("Bem vindo.", "success", "editprofile.php");
+        }else{
+            $message->setMessage("E-mail ou senha incorretos.", "error", "back");
+        }
+    }else{
+        $message->setMessage("Nao autorizado.", "error", "index.php");
     }
