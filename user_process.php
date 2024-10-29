@@ -48,7 +48,21 @@
         
         $userDao->update($userData);  
     }else if($type === 'changepassword'){
+        $password = filter_input(INPUT_POST, "password");
+        $confirmpassword = filter_input(INPUT_POST, "confirmpassword");
+        $userData = $userDao->verifyToken();
+        $id = $userData->id;
+        if($password == $confirmpassword){
+            $user = new User();
+            $finalPassword = $user->generatePassword($password);
 
+            $user->password = $finalPassword;
+            $user->id = $id;
+
+            $userDao->changePassword($user);
+        }else{
+            $message->setMessage("As senhas estao diferentes.", "error", "back");
+        }
     }else{
         $message->setMessage("Nao autorizado.", "error", "index.php");
     }
