@@ -19,8 +19,19 @@
         if($name && $lastname && $email && $password){
             if($password === $confirmpassword){
                  if($userDao->findByEmail($email) === false){
-                    echo "nenhum usuario encontrado";   
-                 }else{
+                    $user = new User();
+
+                    $userToken = $user->generateToken();
+                    $finalPassword = $user->generatePassword($password);
+
+                    $user->name = $name;
+                    $user->lastname = $lastname;
+                    $user->email = $email;
+                    $user->password = $finalPassword;
+                    $user->token = $userToken;
+                    $auth = true;
+                    $userDao->create($user, $auth);
+                }else{
                     $message->setMessage("Usuario ja cadastrado com esse e-mail.", "error", "back");
                  }
             }else{
