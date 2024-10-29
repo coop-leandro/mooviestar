@@ -5,6 +5,7 @@
     require_once("globals.php");
     require_once("db.php");
 
+    $userDao = new UserDAO($conn, $BASE_URL);
     $message = new Message($BASE_URL);
     $type = filter_input(INPUT_POST, "type");
 
@@ -16,7 +17,15 @@
         $confirmpassword = filter_input(INPUT_POST, "confirmpassword");
 
         if($name && $lastname && $email && $password){
-            
+            if($password === $confirmpassword){
+                 if($userDao->findByEmail($email) === false){
+                    echo "nenhum usuario encontrado";   
+                 }else{
+                    $message->setMessage("Usuario ja cadastrado com esse e-mail.", "error", "back");
+                 }
+            }else{
+                $message->setMessage("Senhas diferentes.", "error", "back");
+            }
         }else{
             $message->setMessage("Por favor preencha todos os campos.", "error", "back");
         }
