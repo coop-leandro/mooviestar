@@ -8,6 +8,11 @@
         public $image;
         public $bio;
         public $token;
+        public $user;
+
+        public function getFullName($user){
+            return $this->name . '' . $this->lastname;
+        }
 
         public function generateToken(){
             return bin2hex(random_bytes(50));
