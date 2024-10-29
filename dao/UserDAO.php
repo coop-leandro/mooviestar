@@ -29,6 +29,7 @@
 
             return $user;
         }
+
         public function create(User $user, $authUser = false){
             $stmt = $this->conn->prepare('INSERT INTO users(
                 name, lastname, email, password, token
@@ -46,12 +47,25 @@
                 $this->setTokenToSession($user->token);
             }
         }
+
         public function update(User $user){
 
         }
-        public function verifyToken($protected = false){
 
+        public function verifyToken($protected = false){
+            if(!empty($_SESSION['token'])){
+                $token = $_SESSION['token'];
+                $user = $this->findByToken($token);
+                if($user){
+                    return $user;
+                }else if($protected){
+                    $this->message->setMessage('Nao autenticado!', 'error', 'index.php');
+                }
+            }else if($protected){
+                $this->message->setMessage('Nao autenticado!', 'error', 'index.php');
+            }
         }
+
         public function setTokenToSession($token, $redirect = true){
             $_SESSION['token'] = $token;
 
@@ -59,11 +73,32 @@
                 $this->message->setMessage('Bem vindo!', 'success', 'editprofile.php');
             }
         }
+
+        public function destroyToken(){
+            $_SESSION['token'] = '';
+
+            $this->message->setMessage('LogOut concluído', 'success', 'index.php');
+        }
+
         public function authenticateUser($email, $password){
 
         }
         public function findByToken($token){
+            if($token != ''){
+                $stmt = $this->conn->prepare('SELECT * FROM users WHERE token = :token');
+                $stmt->bindParam(':token', $token);
+                $stmt->execute();
+                if($stmt->rowCount() > 0){
+                    $data = $stmt->fetch();
+                    $user = $this->buildUser($data);
 
+                    return $user;
+                }else{
+                    return false;
+                }
+            }else{
+                return false;
+            }
         }
         public function findByEmail($email){
             if($email != ''){

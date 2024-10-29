@@ -1,13 +1,17 @@
 <?php
-    require_once("globals.php");
-    require_once("db.php");
-    require_once("models/Message.php");
+require_once("globals.php");
+require_once("db.php");
+require_once("models/Message.php");
+require_once("dao/UserDAO.php");
 
-    $message = new Message($BASE_URL);
-    $flassMessage = $message->getMessage();
-    if(!empty($flassMessage["msg"])){
-        $message->clearMessage();
-    }
+$message = new Message($BASE_URL);
+$flassMessage = $message->getMessage();
+if (!empty($flassMessage["msg"])) {
+    $message->clearMessage();
+}
+
+$userDao = new UserDAO($conn, $url);
+$userData = $userDao->verifyToken(false);
 ?>
 
 <!DOCTYPE html>
@@ -42,15 +46,34 @@
             </form>
             <div class="collapse navbar-collapse" id="navbar">
                 <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a href="<?= $BASE_URL ?>auth.php" class="nav-link">Entrar / Cadastrar</a>
-                    </li>
+                    <?php if ($userData) : ?>
+                        <li class="nav-item">
+                            <a href="<?= $BASE_URL ?>newmoovie.php" class="nav-link">
+                                <i class="far fa-plus-square"></i> Adicionar filme
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?= $BASE_URL ?>dashboard.php" class="nav-link">Meus filmes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?= $BASE_URL ?>editprofile.php" class="nav-link bold">
+                                <?= $userData->name ?>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?= $BASE_URL ?>logout.php" class="nav-link">Sair</a>
+                        </li>
+                    <?php else : ?>
+                        <li class="nav-item">
+                            <a href="<?= $BASE_URL ?>auth.php" class="nav-link">Entrar / Cadastrar</a>
+                        </li>
+                    <?php endif ?>
                 </ul>
             </div>
         </nav>
     </header>
-    <?php if(!empty($flassMessage["msg"])) : ?>
+    <?php if (!empty($flassMessage["msg"])) : ?>
         <div class="msg-container">
-            <p class="msg <?= $flassMessage["type"]?>"><?= $flassMessage["msg"]?></p>
+            <p class="msg <?= $flassMessage["type"] ?>"><?= $flassMessage["msg"] ?></p>
         </div>
     <?php endif ?>

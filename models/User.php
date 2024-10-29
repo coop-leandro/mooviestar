@@ -23,6 +23,7 @@
         public function update(User $user);
         public function verifyToken($protected = false);
         public function setTokenToSession($token, $redirect = true);
+        public function destroyToken();
         public function authenticateUser($email, $password);
         public function findByToken($token);
         public function findByEmail($email);
