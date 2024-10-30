@@ -10,7 +10,8 @@
             'unauthorized' => 'Não autorizado.',
             'incorrect_fields' => 'Email ou senha incorretos',
             'image_error' => 'Erro ao processar a imagem. Verifique se o arquivo está corrompido.',
-            'image_invalid' => 'Tipo inválido de imagem, insira png ou jpg.'
+            'image_invalid' => 'Tipo inválido de imagem, insira png ou jpg.',
+            'movie_add' => 'Filme adicionado com sucesso!'
         ];
 
         function __construct($url){
