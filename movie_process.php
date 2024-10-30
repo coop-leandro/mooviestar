@@ -36,6 +36,7 @@
             $movie->category = $category;
             $movie->trailer = $trailer;
             $movie->length = $length;
+            $movie->users_id = $userData->id;
 
             if (isset($_FILES['image']) && !empty($_FILES['image']['tmp_name'])) {
                 $image = $_FILES['image'];
@@ -60,7 +61,6 @@
                     $message->setMessage("image_invalid", "error", "back");
                 }
             }
-            print_r($_POST); print_r($_FILES); exit;
             $movieDao->create($movie);
         }else{
             $message->setMessage('required_fields', 'error', 'back');

@@ -51,5 +51,5 @@
     </div>
   </div>
 <?php
-  require_once("templates/footer.php");
+  require_once("components/footer.php");
 ?>
