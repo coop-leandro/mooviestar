@@ -32,7 +32,17 @@
         }
 
         public function getLatestMovies(){
-            
+            $movies = [];
+            $stmt = $this->conn->query('SELECT * FROM moovies ORDER BY id DESC');
+            $stmt->execute();
+
+            if($stmt->rowCount() > 0){
+                $moviesArr = $stmt->fetchAll();
+                foreach($moviesArr as $movie){
+                    $movies[] = $this->buildMovie($movie);
+                }
+            }
+            return $movies;
         }
 
         public function getMoviesbyCategory($category){
