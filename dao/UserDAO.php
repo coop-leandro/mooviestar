@@ -97,7 +97,7 @@
         public function destroyToken(){
             $_SESSION['token'] = '';
 
-            $this->message->setMessage('LogOut concluído', 'success', 'index.php');
+            $this->message->setMessage('logout', 'success', 'index.php');
         }
 
         public function authenticateUser($email, $password){

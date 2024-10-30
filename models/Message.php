@@ -1,14 +1,32 @@
 <?php 
     class Message{
         private $url;
+        private $messages = [
+            'required_fields' => 'Preencha todos os campos necessários',
+            'login' => 'Login realizado com sucesso',
+            'logout' => 'LogOut realizado com sucesso',
+            'error' => 'Ocorreu um erro. Tente novamente',
+            'email' => 'E-mail ja cadastrado.',
+            'unauthorized' => 'Não autorizado.',
+            'incorrect_fields' => 'Email ou senha incorretos',
+            'image_error' => 'Erro ao processar a imagem. Verifique se o arquivo está corrompido.',
+            'image_invalid' => 'Tipo inválido de imagem, insira png ou jpg.'
+        ];
 
         function __construct($url){
             $this->url = $url;
         }
 
-        public function setMessage($msg, $type, $redirect = 'index.php'){
-            $_SESSION['msg'] = $msg;
-            $_SESSION['type'] = $type;
+        public function setMessage($key, $type, $redirect = 'index.php'){
+            
+            if (isset($this->messages[$key])) {
+                $_SESSION['msg'] = $this->messages[$key];
+                $_SESSION['type'] = $type;
+            } else {
+                $_SESSION['msg'] = 'Mensagem não definida';
+                $_SESSION['type'] = 'error';
+            }
+
             if($redirect != 'back'){
                 header('Location: ' . $redirect);
             }else{

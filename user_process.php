@@ -39,10 +39,10 @@
                     imagejpeg($imageFile, './img/users/' . $imageName, 100);
                     $userData->image = $imageName;
                 } else {
-                    $message->setMessage("Erro ao processar a imagem. Verifique se o arquivo está corrompido.", "error", "back");
+                    $message->setMessage("image_error", "error", "back");
                 }
             } else {
-                $message->setMessage("Tipo inválido de imagem, insira png ou jpg!", "error", "back");
+                $message->setMessage("image_invalid", "error", "back");
             }
         }
         
@@ -61,8 +61,8 @@
 
             $userDao->changePassword($user);
         }else{
-            $message->setMessage("As senhas estao diferentes.", "error", "back");
+            $message->setMessage("error", "error", "back");
         }
     }else{
-        $message->setMessage("Nao autorizado.", "error", "index.php");
+        $message->setMessage("unauthorized", "error", "index.php");
     }

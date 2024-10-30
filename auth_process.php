@@ -32,24 +32,27 @@
                     $auth = true;
                     $userDao->create($user, $auth);
                 }else{
-                    $message->setMessage("Usuario ja cadastrado com esse e-mail.", "error", "back");
+                    $message->setMessage("email", "error", "back");
                  }
             }else{
-                $message->setMessage("Senhas diferentes.", "error", "back");
+                $message->setMessage("error", "error", "back");
             }
         }else{
-            $message->setMessage("Por favor preencha todos os campos.", "error", "back");
+            $message->setMessage("required_fields", "error", "back");
         }
 
     }else if($type === "login"){
         $email = filter_input(INPUT_POST, "email");
         $password = filter_input(INPUT_POST, "password");
-
-        if($userDao->authenticateUser($email, $password)){
-            $message->setMessage("Bem vindo.", "success", "editprofile.php");
+        if(empty($email) || empty($password)){
+            $message->setMessage('required_fields', 'error', 'back');
         }else{
-            $message->setMessage("E-mail ou senha incorretos.", "error", "back");
+            if($userDao->authenticateUser($email, $password)){
+                $message->setMessage("login", "success", "editprofile.php");
+            }else{
+                $message->setMessage("incorrect_fields", "error", "back");
+            }
         }
     }else{
-        $message->setMessage("Nao autorizado.", "error", "index.php");
+        $message->setMessage("unauthorized", "error", "index.php");
     }
