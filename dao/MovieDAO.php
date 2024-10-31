@@ -65,9 +65,8 @@
         public function getMoviesByUserId($id){
             $movies = [];
             $stmt = $this->conn->prepare('SELECT * FROM moovies 
-                WHERE id = :id
-                ORDER BY id DESC');
-            $stmt->bindParam(':id', $users_id);
+                WHERE users_id = :users_id');
+            $stmt->bindParam(':users_id', $id);
             $stmt->execute();
 
             if($stmt->rowCount() > 0){
