@@ -63,7 +63,20 @@
         }
 
         public function getMoviesByUserId($id){
-            
+            $movies = [];
+            $stmt = $this->conn->prepare('SELECT * FROM moovies 
+                WHERE id = :id
+                ORDER BY id DESC');
+            $stmt->bindParam(':id', $users_id);
+            $stmt->execute();
+
+            if($stmt->rowCount() > 0){
+                $moviesArr = $stmt->fetchAll();
+                foreach($moviesArr as $movie){
+                    $movies[] = $this->buildMovie($movie);
+                }
+            }
+            return $movies;
         }
 
         public function findById($id){
