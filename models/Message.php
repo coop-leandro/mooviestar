@@ -7,6 +7,8 @@
             'logout' => 'LogOut realizado com sucesso',
             'error' => 'Ocorreu um erro. Tente novamente',
             'email' => 'E-mail ja cadastrado.',
+            'update' => 'Dados atualizados!',
+            'password_altered' => 'Sua senha foi alterada!',
             'unauthorized' => 'Não autorizado.',
             'incorrect_fields' => 'Email ou senha incorretos',
             'image_error' => 'Erro ao processar a imagem. Verifique se o arquivo está corrompido.',

@@ -68,7 +68,7 @@
             $stmt->execute();
             
             if($redirect){
-                $this->message->setMessage('Dados atualizados!', 'success', 'editprofile.php');
+                $this->message->setMessage('update', 'success', 'editprofile.php');
             }
         }
 
@@ -79,10 +79,10 @@
                 if($user){
                     return $user;
                 }else if($protected){
-                    $this->message->setMessage('Nao autenticado!', 'error', 'index.php');
+                    $this->message->setMessage('unauthorized', 'error', 'index.php');
                 }
             }else if($protected){
-                $this->message->setMessage('Nao autenticado!', 'error', 'index.php');
+                $this->message->setMessage('unauthorized', 'error', 'index.php');
             }
         }
 
@@ -90,7 +90,7 @@
             $_SESSION['token'] = $token;
 
             if($redirect){
-                $this->message->setMessage('Bem vindo!', 'success', 'editprofile.php');
+                $this->message->setMessage('login', 'success', 'editprofile.php');
             }
         }
 
@@ -161,6 +161,6 @@
             $stmt->bindParam(':id', $user->id);
             $stmt->execute();
 
-            $this->message->setMessage('Senha alterada com sucesso', 'success', 'editprofile.php');
+            $this->message->setMessage('password_altered', 'success', 'editprofile.php');
         }
     }
