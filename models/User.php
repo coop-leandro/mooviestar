@@ -11,7 +11,7 @@
         public $user;
 
         public function getFullName($user){
-            return $this->name . '' . $this->lastname;
+            return $this->name . ' ' . $this->lastname;
         }
 
         public function generateToken(){
