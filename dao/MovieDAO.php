@@ -118,6 +118,10 @@
         }
 
         public function destroy($id){
-            
+            $stmt = $this->conn->prepare('DELETE FROM moovies WHERE id = :id');
+            $stmt->bindParam(':id', $id);
+            $stmt->execute();
+
+            $this->message->setMessage('movie_deleted', 'success', 'index.php');
         }
     }
