@@ -66,6 +66,20 @@
             $message->setMessage('required_fields', 'error', 'back');
         }
 
+    }
+    else if($type  === 'delete'){
+        $id = filter_input(INPUT_POST, 'id');
+        $movie = $movieDao->findById($id);
+        if($movie){
+            if($movie->users_id === $userData->id){
+                $movieDao->destroy($movie->id);
+            }else{
+                $message->setMessage('unauthorized', 'error', 'index.php');
+            }
+        }else{
+            $message->setMessage('unauthorized', 'error', 'index.php');
+        }
+
     }else{
-        $message->setMessage('unauthorized', 'error', 'index.php');
+        $message->setMessage('movie_add', 'error', 'index.php');
     }
