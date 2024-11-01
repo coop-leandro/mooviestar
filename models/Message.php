@@ -13,7 +13,8 @@
             'incorrect_fields' => 'Email ou senha incorretos',
             'image_error' => 'Erro ao processar a imagem. Verifique se o arquivo está corrompido.',
             'image_invalid' => 'Tipo inválido de imagem, insira png ou jpg.',
-            'movie_add' => 'Filme adicionado com sucesso!'
+            'movie_add' => 'Filme adicionado com sucesso!',
+            'movie_deleted' => 'Filme deletado com sucesso!'
         ];
 
         function __construct($url){
