@@ -38,7 +38,7 @@ $userData = $userDao->verifyToken(false);
             <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation" type="button">
                 <i class="fas fa-bars"></i>
             </button>
-            <form action="" method="get" class="d-flex my-2 my-lg-0" id="search-form">
+            <form action="<?=$BASE_URL?>search.php" method="get" class="d-flex my-2 my-lg-0" id="search-form">
                 <input type="text" name="q" id="search" class="form-control me-sm-2" placeholder="Buscar filmes" aria-label="Search">
                 <button class="btn my-2 my-sm-0" type="submit">
                     <i class="fas fa-search"></i>
