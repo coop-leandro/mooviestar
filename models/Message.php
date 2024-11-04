@@ -14,7 +14,8 @@
             'image_error' => 'Erro ao processar a imagem. Verifique se o arquivo está corrompido.',
             'image_invalid' => 'Tipo inválido de imagem, insira png ou jpg.',
             'movie_add' => 'Filme adicionado com sucesso!',
-            'movie_deleted' => 'Filme deletado com sucesso!'
+            'movie_deleted' => 'Filme deletado com sucesso!',
+            'comment_add' => 'comentário adicionado!'
         ];
 
         function __construct($url){
